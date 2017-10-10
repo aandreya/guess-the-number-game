@@ -1,41 +1,26 @@
-hidden_number = 17
+import random
 
-print "Let's play a game!"
-print "We hid a number and we want you to guess it."
-print "You have 5 chances to guess the hidden number."
-print "PRIZE: the fun!"
-print " "
-print " "
-print "Now let's guess a number between 1 and 30! "
-print " "
-print " "
+print "Let's play a game!\n\nWe hid a number and we want you to guess it.\nYou have 5 chances to get it right.\nPRIZE: the fun!\n\n" \
+      "Now let's guess a number between 1 and 30!\n\n "
 
-i = 0
-guess = 0
+def main():
+    another_game = "y"
+    while another_game.lower() == "y":
+        hidden_number = random.randint(1, 30)
+        for guess in range(1,6):
+            try:
+                bingo = int(raw_input("Your guess is: "))
+                if bingo == hidden_number:
+                    print "W O W ! You guessed it!"
+                    break
+                elif bingo > hidden_number:
+                    print "Must be lower number"
+                elif bingo < hidden_number:
+                    print "Must be higher number"
+            except ValueError:
+                print "Your choice is not a number."
+        print "\n\n G A M E   O V E R"
+        another_game = raw_input("Wanna play again?    Y / N  :")
 
-while True:
-    try:
-        guess = int(raw_input("Your guess is: "))
-
-        if guess > 30:
-            print "Number must be between 1 an 30."
-            print " "
-        elif guess == hidden_number:
-            print "W O W ! You guessed it!"
-            print " "
-            break
-        elif guess > hidden_number:
-            print "Try lower number"
-            print " "
-        elif guess < hidden_number:
-            print "Try higher number"
-            print " "
-    except ValueError:
-        print "Your choice is not a number.";
-
-    i = i + 1
-    if i >= 5:
-            print " "
-            print "G A M E   O V E R !"
-            print " "
-            break
+if __name__ == "__main__":
+    main()
